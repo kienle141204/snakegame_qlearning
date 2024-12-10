@@ -27,4 +27,4 @@ def train(env, episodes, epsilon=1.0, epsilon_min=0.1, epsilon_decay=0.99, alpha
 
 #train
 env = SnackEnv()
-train(env,episodes=10000)
+train(env,episodes=100000)

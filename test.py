@@ -11,6 +11,7 @@ def test(env):
     done = False
 
     pygame.init()
+    pygame.display.set_caption("AKYE")
     screen_size = 500
     block_size = screen_size // env.grid_size
     screen = pygame.display.set_mode((screen_size, screen_size))
@@ -31,7 +32,7 @@ def test(env):
         action = env.choose_action(state, epsilon)
         state, _, done = env.step(action)
 
-        clock.tick(10)
+        clock.tick(20)
     
     print(env.points)
     pygame.quit()
