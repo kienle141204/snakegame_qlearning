@@ -1,7 +1,8 @@
 import pickle
 from snake import SnackEnv
+import time
 
-def train(env, episodes, epsilon=1.0, epsilon_min=0.1, epsilon_decay=0.99, alpha=0.1, gamma=0.9):
+def train(env, episodes, epsilon=1.0, epsilon_min=0.1, epsilon_decay=0.99995, alpha=0.1, gamma=0.95):
     for episode in range(episodes):
         state = env.reset()
         done = False
@@ -19,12 +20,15 @@ def train(env, episodes, epsilon=1.0, epsilon_min=0.1, epsilon_decay=0.99, alpha
         
         epsilon = max(epsilon_decay*epsilon, epsilon_min)
     
-    with open("q_table_train.pkl", "wb") as f:
+    with open(f"q_table_train_{env.grid_size}.pkl", "wb") as f:
         pickle.dump(env.q_table, f)
 
     print("Training completed and Q-table saved!")
 
 
 #train
-env = SnackEnv()
-train(env,episodes=100000)
+env = SnackEnv(20)
+st = time.time()
+train(env,episodes=1000000)
+et = time.time()
+print(et - st)

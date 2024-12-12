@@ -5,9 +5,9 @@ from gym import spaces
 import pickle
 
 class SnackEnv(gym.Env):
-    def __init__(self):
+    def __init__(self, grid_size):
         super(SnackEnv, self).__init__() # khởi tạo lớp cha
-        self.grid_size = 10
+        self.grid_size = grid_size
         self.action_space = spaces.Discrete(4) # khởi tạo không gian hành động
         self.q_table = {}
         self.start_point = [(0,0), (0,9), (9,0), (9,9)]
@@ -45,7 +45,10 @@ class SnackEnv(gym.Env):
             if (head_x, head_y) == self.food:
                 reward = 10
                 self.points += 1
-                self.food = (np.random.randint(0,self.grid_size), np.random.randint(0,self.grid_size))
+                (x, y) = (np.random.randint(0,self.grid_size), np.random.randint(0,self.grid_size))
+                while (x,y) == self.snake[0]:
+                    (x, y) = (np.random.randint(0,self.grid_size), np.random.randint(0,self.grid_size))
+                self.food = (x,y)
             else:
                 reward = 1
             self.snake.pop()
