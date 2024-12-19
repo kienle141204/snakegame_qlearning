@@ -4,7 +4,7 @@ import pickle
 
 
 def test(env,n):
-    with open(f"q_table_train_{n//2}_test.pkl", "rb") as f:
+    with open(f"q_table_train_{n}_test.pkl", "rb") as f:
         env.q_table = pickle.load(f)
     
     epsilon = 0 # khong kham pha nua

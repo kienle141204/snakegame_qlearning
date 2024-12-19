@@ -1,9 +1,13 @@
 from snake import SnackEnv
 from train import train
 from test import test 
+from custom_modules.articstic_name import display_name
 
 
 def main():
+    print("*************************************")
+    name = display_name("a k y e", font="slant")
+    print(name)
     print("*************************************")
     n = int(input("Nhập và kích thước khung hình : "))
     env = SnackEnv(n)
@@ -19,7 +23,7 @@ def main():
             train(env, episodes=30000)
             print("*************************************")
         elif i==2:
-            test(env,2*n)
+            test(env,n)
             print("*************************************")
         else:
             print("*************************************")
